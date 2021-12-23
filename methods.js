@@ -19,11 +19,25 @@ function generatePassword(){
     mayúsculas = Number(document.getElementById("mayúsculas").value)
     minúsculas = Number(document.getElementById("minúsculas").value)
     números = Number(document.getElementById("números").value)
-    especiales = Number(document.getElementById("números").value)
+    especiales = Number(document.getElementById("especiales").value)
     respuesta = document.getElementById("respuesta")
+    contraseña = ''
     if(mayúsculas<0 || minúsculas<0 || números<0 || especiales<0){
         respuesta.innerText  = "do not use negative numbers"
     }else{
-
+        for (let index = 0; index < mayúsculas; index++) {
+            contraseña += listaMayúsculas[Math.floor(Math.random() * (listaMayúsculas.length))];
+        }
+        for (let index = 0; index < minúsculas; index++) {
+            contraseña += listaMinúsculas[Math.floor(Math.random() * (listaMinúsculas.length))];
+        }
+        for (let index = 0; index < números; index++) {
+            contraseña += listaNúmeros[Math.floor(Math.random() * (listaNúmeros.length))];
+        }
+        for (let index = 0; index < especiales; index++) {
+            contraseña += listaEspeciales[Math.floor(Math.random() * (listaEspeciales.length))];
+        }
+        contraseña = contraseña.split('').sort(function(){return 0.5-Math.random()}).join('');
+        respuesta.innerText = contraseña
     }
 }
